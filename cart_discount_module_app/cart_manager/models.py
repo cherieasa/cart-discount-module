@@ -4,9 +4,11 @@ from django.db import models
 
 from discount_manager.models import CouponDiscount, OnTopDiscount, SeasonalDiscount
 from product_manager.models import Product
+from user_manager.models import User
 
 
 class ShoppingCart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
     coupon_discount = models.ForeignKey(
         CouponDiscount, on_delete=models.SET_NULL, blank=True, null=True
@@ -53,7 +55,8 @@ class ShoppingCart(models.Model):
             total_price_after_coupon = self.coupon_discount.apply_discount(
                 self.total_price_pre_discount
             )
-        return total_price_after_coupon * 0.20
+            return min(total_price_after_coupon * 0.20, self.user.points)
+        return None
 
     def save(self, *args, **kwargs):
         if self.points > self.max_points_discount:
