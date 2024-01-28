@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "user_manager",
+    "discount_manager",
+    "product_manager",
+    "cart_manager",
 ]
 
 MIDDLEWARE = [
@@ -67,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cart_discount_module_app.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
