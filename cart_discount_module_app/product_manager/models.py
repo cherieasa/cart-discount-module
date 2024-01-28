@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class ProductCategory(models.Model):
@@ -7,6 +8,10 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _("Product Category")
+        verbose_name_plural = _("Product Categories")
 
 
 class Product(models.Model):
@@ -16,4 +21,8 @@ class Product(models.Model):
     price = models.FloatField(validators=[MinValueValidator(0)])
 
     def __str__(self):
-        return self.name
+        return f"{self.name} / {self.price}"
+
+    class Meta:
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")

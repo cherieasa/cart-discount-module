@@ -1,23 +1,45 @@
 from django.contrib import admin
 
+# from django.core.exceptions import ValidationError
+
 from .models import ShoppingCart
+
+# from discount_manager.models import OnTopDiscount
 
 
 class ShoppingCartAdminView(admin.ModelAdmin):
+    autocomplete_fields = (
+        "user",
+        "coupon_discount",
+        "on_top_discount",
+        "seasonal_discount",
+    )
     list_display = (
         "id",
-        "total_price_pre_discount",
-        "total_price_post_discount",
-        "total_discounted",
-        "points",
-        "max_points_discount",
+        "user",
+        "points_used",
     )
     readonly_fields = (
-        "total_price_pre_discount",
         "total_price_post_discount",
-        "total_discounted",
         "max_points_discount",
+        "total_discounted",
+        "total_price_pre_discount",
+    )
+    filter_horizontal = [
+        "products",
+    ]
+    fields = (
+        "user",
+        "points_used",
+        "max_points_discount",
+        "products",
+        "coupon_discount",
+        "on_top_discount",
+        "seasonal_discount",
+        "total_price_pre_discount",
+        "total_discounted",
+        "total_price_post_discount",
     )
 
 
-admin.register(ShoppingCart, ShoppingCartAdminView)
+admin.site.register(ShoppingCart, ShoppingCartAdminView)
