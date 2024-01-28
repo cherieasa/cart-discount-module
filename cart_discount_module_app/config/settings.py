@@ -125,3 +125,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Super Admin Credentials
+SUPER_ADMIN_USERNAME = "admin"
+SUPER_ADMIN_EMAIL = "admin@example.com"
+SUPER_ADMIN_PASS = "Test1234++"
