@@ -1,5 +1,7 @@
 # cart-discount-module
 
+## By Terada Asavapakuna - A24013000
+
 ## Set up
 
 ### 1. Create a Virtual Environment, Activate it, and Install Requirements
