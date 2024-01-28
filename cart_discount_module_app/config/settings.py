@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cart_discount_module_app.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
