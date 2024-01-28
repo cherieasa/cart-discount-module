@@ -53,6 +53,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+AUTH_USER_MODEL = "user_manager.User"
+
 ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
@@ -127,6 +129,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Super Admin Credentials
-SUPER_ADMIN_USERNAME = "admin"
 SUPER_ADMIN_EMAIL = "admin@example.com"
 SUPER_ADMIN_PASS = "Test1234++"
