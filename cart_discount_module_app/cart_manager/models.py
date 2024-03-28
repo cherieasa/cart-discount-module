@@ -10,7 +10,7 @@ from user_manager.models import User
 
 class ShoppingCart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product, blank=True, null=True)
+    products = models.ManyToManyField(Product, blank=True)
     coupon_discount = models.ForeignKey(
         CouponDiscount, on_delete=models.SET_NULL, blank=True, null=True
     )
@@ -36,7 +36,6 @@ class ShoppingCart(models.Model):
 
     @property
     def max_points_discount(self):
-        print("in max point")
         if (
             not self.id
             or not self.products.exists()
@@ -54,7 +53,6 @@ class ShoppingCart(models.Model):
             total_price = self.total_price_pre_discount
         return min(total_price * 0.20, self.user.points)
 
-    @property
     def remove_all_discounts(self):
         self.coupon_discount.delete()
         self.on_top_discount.delete()

@@ -61,7 +61,6 @@ class OnTopDiscount(models.Model):
                 product.price
                 for product in products_queryset.filter(category=self.category)
             )
-            print("total cat price", total_category_price)
             discount = total_category_price * (1 - self.discount_value / 100)
 
         return total_price - discount
@@ -70,7 +69,7 @@ class OnTopDiscount(models.Model):
         if self.discount_type == self.PRODUCT_CATEGORY:
             return f"{self.discount_type} / {self.category} - {self.discount_value}"
         elif self.discount_type == self.POINTS:
-            return f"{self.discount_type} / {self.points}"
+            return f"{self.discount_type} / {self.discount_value}"
         return None
 
     def save(self, *args, **kwargs):
